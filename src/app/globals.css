@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/* ── Design tokens ───────────────────────────────────────────────
+   Calm, premium, Apple-inspired: lots of white space, near-black
+   type, one vivid accent reserved for the motto and key actions. */
+:root {
+  --bg: #ffffff;
+  --bg-subtle: #f5f5f7;
+  --bg-elevated: #ffffff;
+  --fg: #1d1d1f;
+  --fg-muted: #5f5f64;
+  --fg-faint: #6e6e73;
+  --line: rgb(0 0 0 / 0.09);
+  --accent: #0066cc;
+  --accent-fg: #ffffff;
+  --grad-from: #0066ff;
+  --grad-via: #7a3cff;
+  --grad-to: #ff2d78;
+  --nav-bg: rgb(255 255 255 / 0.72);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 32px rgb(0 0 0 / 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000000;
+    --bg-subtle: #101012;
+    --bg-elevated: #161618;
+    --fg: #f5f5f7;
+    --fg-muted: #a1a1a6;
+    --fg-faint: #8e8e93;
+    --line: rgb(255 255 255 / 0.1);
+    --accent: #3d8bff;
+    --grad-from: #3d8bff;
+    --grad-via: #9b6bff;
+    --grad-to: #ff5c95;
+    --nav-bg: rgb(0 0 0 / 0.66);
+    --shadow-card: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 32px rgb(0 0 0 / 0.4);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-faint: var(--fg-faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ── Signature gradient text (the motto) ─────────────────────── */
+.text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--grad-from) 0%,
+    var(--grad-via) 55%,
+    var(--grad-to) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-drift 9s ease-in-out infinite alternate;
+}
+
+@keyframes gradient-drift {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+/* ── Entrance animations ─────────────────────────────────────── */
+.rise {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+@keyframes rise {
+  to { opacity: 1; transform: none; }
+}
+
+/* Scroll reveal: elements start hidden only once JS has marked the page,
+   so content is always visible without JavaScript. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise,
+  .text-gradient { animation: none; }
+  .rise { opacity: 1; transform: none; }
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+}
+
+/* Hide scrollbars on horizontal galleries while keeping them scrollable. */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@media print {
+  .no-print { display: none !important; }
+  /* IntersectionObserver never fires for print: show everything. */
+  .js [data-reveal] { opacity: 1 !important; transform: none !important; }
+  /* Gradient text and the black motto band are backgrounds, which print drops by default. */
+  .text-gradient,
+  .bg-black { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
