@@ -4,6 +4,8 @@
 
 My personal site: every project I've built, told as honest case studies, in English (`/`) and Spanish (`/es/`).
 
+**Live:** [franciscobasigalup.vercel.app](https://franciscobasigalup.vercel.app)
+
 Built with Next.js 16 (App Router, static export), React 19, TypeScript and Tailwind CSS 4. No backend, no database, no tracking: `npm run build` produces plain HTML, CSS and JS in `out/`.
 
 ## Run it
