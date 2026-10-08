@@ -6,9 +6,9 @@ import { site } from "@/content/site";
 
 export const metadata: Metadata = pageMetadata({
   lang: "en",
-  title: `${site.name} — I can make it happen and I will.`,
+  title: `${site.name} — ${site.motto}`,
   description:
-    "Francisco Basigalup, Information Systems student in Argentina, open to SWE internships. Web, mobile and embedded projects with code, tests and honest status. I can make it happen and I will.",
+    "Francisco Basigalup, Information Systems student in Argentina, open to SWE internships. Web, mobile and embedded projects with code, tests and honest status. Don't take my word for it. Run it.",
   en: "/",
   es: "/es/",
 });

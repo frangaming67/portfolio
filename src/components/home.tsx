@@ -75,7 +75,7 @@ function Hero({ lang }: { lang: Lang }) {
       <Container className="pb-20 pt-20 sm:pb-28 sm:pt-32">
         <p className="rise mb-6 text-[13px] font-medium text-fg-muted sm:text-sm">{t.hero.eyebrow}</p>
         <h1 lang="en" className="text-[clamp(3.1rem,10vw,8rem)] font-semibold leading-[0.92] tracking-[-0.05em]">
-          <span className="rise block">{t.hero.line1}</span>
+          <span className="rise block text-balance">{t.hero.line1}</span>
           <span className="rise block pb-[0.08em] [animation-delay:180ms]">
             <span className="text-gradient">{t.hero.line2}</span>
           </span>
@@ -319,7 +319,7 @@ function Motto({ lang }: { lang: Lang }) {
         </p>
         <blockquote data-reveal lang="en">
           <p className="mx-auto max-w-5xl text-[clamp(2.6rem,8vw,6.5rem)] font-semibold uppercase leading-[0.95] tracking-[-0.04em]">
-            I can make it happen <span className="text-gradient">and I will.</span>
+            {t.hero.line1} <span className="text-gradient">{t.hero.line2}</span>
           </p>
           <footer className="mt-10 text-[15px] text-white/60">— {t.motto.sign}</footer>
         </blockquote>

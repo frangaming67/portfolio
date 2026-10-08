@@ -6,9 +6,9 @@ import { site } from "@/content/site";
 
 export const metadata: Metadata = pageMetadata({
   lang: "es",
-  title: `${site.name} — I can make it happen and I will.`,
+  title: `${site.name} — ${site.motto}`,
   description:
-    "Francisco Basigalup, estudiante de Sistemas en Argentina, busca pasantías en ingeniería de software. Proyectos web, móviles y embebidos con código, tests y estado real. I can make it happen and I will.",
+    "Francisco Basigalup, estudiante de Sistemas en Argentina, busca pasantías en ingeniería de software. Proyectos web, móviles y embebidos con código, tests y estado real. No me creas: probalo.",
   en: "/",
   es: "/es/",
 });

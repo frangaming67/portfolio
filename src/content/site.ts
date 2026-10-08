@@ -8,7 +8,7 @@ export const site = {
   name: "Francisco Basigalup",
   shortName: "Francisco",
   initials: "FB",
-  motto: "I can make it happen and I will.",
+  motto: "Don't take my word for it. Run it.",
   location: { en: "Argentina", es: "Argentina" } satisfies L,
   // Set NEXT_PUBLIC_SITE_URL once you have a custom domain. On Vercel the
   // production URL is picked up automatically.

@@ -6,8 +6,8 @@ const strings = {
     nav: { work: "Work", all: "All projects", about: "About", contact: "Contact" },
     hero: {
       eyebrow: "Francisco Basigalup · Information Systems student, Universidad Champagnat, Argentina · Open to SWE internships",
-      line1: "I can make it happen",
-      line2: "and I will.",
+      line1: "Don't take my word for it.",
+      line2: "Run it.",
       intro:
         "I build complete products and care about proving they work: a booking platform whose database makes double booking impossible, a bilingual virtual receptionist live on Vercel, and most of the web app for a four-person blockchain marketplace. I work with AI coding agents; the design decisions, reviews and verification are mine.",
       ctaWork: "See my work",
@@ -99,8 +99,8 @@ const strings = {
     nav: { work: "Destacados", all: "Todos los proyectos", about: "Sobre mí", contact: "Contacto" },
     hero: {
       eyebrow: "Francisco Basigalup · Estudiante de Sistemas, Universidad Champagnat, Argentina · Busco pasantías en ingeniería de software",
-      line1: "I can make it happen",
-      line2: "and I will.",
+      line1: "Don't take my word for it.",
+      line2: "Run it.",
       intro:
         "Construyo productos completos y me importa demostrar que funcionan: una plataforma de turnos cuya base de datos hace imposible el doble turno, un recepcionista virtual bilingüe online en Vercel y la mayor parte de la app web de un marketplace blockchain hecho en un equipo de cuatro. Trabajo con agentes de IA; las decisiones de diseño, las revisiones y la verificación son mías.",
       ctaWork: "Ver mi trabajo",

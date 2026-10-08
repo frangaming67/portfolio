@@ -15,12 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 const description =
-  "Francisco Basigalup, Information Systems student in Argentina, open to SWE internships. Web, mobile and embedded projects with code, tests and honest status. I can make it happen and I will.";
+  "Francisco Basigalup, Information Systems student in Argentina, open to SWE internships. Web, mobile and embedded projects with code, tests and honest status. Don't take my word for it. Run it.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — I can make it happen and I will.`,
+    default: `${site.name} — ${site.motto}`,
     template: `%s · ${site.name}`,
   },
   description,
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: site.name,
-    title: `${site.name} — I can make it happen and I will.`,
+    title: `${site.name} — ${site.motto}`,
     description,
   },
   twitter: { card: "summary_large_image" },

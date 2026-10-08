@@ -1,6 +1,6 @@
 # Francisco Basigalup — Portfolio
 
-> **I CAN MAKE IT HAPPEN AND I WILL.**
+> **Don't take my word for it. Run it.**
 
 My personal site: every project I've built, told as honest case studies, in English (`/`) and Spanish (`/es/`).
 
