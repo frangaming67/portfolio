@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { projects, skills, stats } from "@/content/projects";
 import { site } from "@/content/site";
@@ -282,14 +281,6 @@ function About({ lang }: { lang: Lang }) {
           <h2 id="about-title" className="text-[clamp(2rem,4.6vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.035em]">
             {t.about.title}
           </h2>
-          <Image
-            src="/francisco.webp"
-            alt={site.name}
-            width={800}
-            height={800}
-            sizes="(min-width: 1024px) 340px, 280px"
-            className="mt-10 aspect-square w-full max-w-[280px] rounded-3xl object-cover lg:max-w-[340px]"
-          />
         </div>
         <div data-reveal className="space-y-6 text-lg leading-relaxed text-fg-muted">
           {t.about.body.map((para) => (
