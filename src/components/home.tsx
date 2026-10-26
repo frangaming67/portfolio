@@ -3,9 +3,8 @@ import Link from "next/link";
 import { languages, projects, testCounts, tools } from "@/content/projects";
 import { site } from "@/content/site";
 import type { Lang } from "@/content/types";
-import { projectHref, ui } from "@/content/ui";
+import { projectHref, statusLabel, ui } from "@/content/ui";
 import { ContactForm } from "./contact-form";
-import { Ledger, type LedgerRow } from "./ledger";
 import { RunFrame } from "./run-frame";
 
 const MAIN = "franco-lorenzi-web";
@@ -75,8 +74,8 @@ function Showcase({ lang }: { lang: Lang }) {
   const t = ui(lang);
   const p = projects.find((x) => x.slug === MAIN);
   if (!p || !p.cover || !p.demo) return null;
-  const shots = [p.cover, ...p.gallery];
-  const frames = shots.map((m, i) => ({
+  const wide = [p.cover, ...p.gallery.filter((m) => m.frame !== "phone")];
+  const shots = wide.map((m, i) => ({
     src: m.src,
     width: m.width,
     height: m.height,
@@ -84,45 +83,120 @@ function Showcase({ lang }: { lang: Lang }) {
     name: t.showcase.frames[i]?.name ?? "",
     fact: t.showcase.frames[i]?.fact ?? "",
   }));
+  const [lead, ...strip] = shots;
   return (
-    <section id="run" aria-labelledby="run-title" className="show">
-      <div className="show__grid">
-        <div className="show__side">
-          <h2 id="run-title" data-reveal>{p.name}</h2>
-          <p className="show__lede" data-reveal style={{ ["--i" as string]: 1 }}>{t.showcase.lede}</p>
-          <div className="show__actions" data-reveal style={{ ["--i" as string]: 2 }}>
-            <a className="link" href={p.demo} target="_blank" rel="noopener noreferrer">{t.showcase.open}</a>
-            <Link className="link" href={projectHref(lang, p.slug)}>{t.showcase.caseStudy}</Link>
-          </div>
-          <div className="show__notes">
-            {t.showcase.notes.map((n, i) => (
-              <p key={n} data-reveal style={{ ["--i" as string]: i }}>{n}</p>
-            ))}
-          </div>
-        </div>
+    <section id="run" aria-labelledby="run-title" className="feature">
+      <div className="feature__top">
         <RunFrame
-          frames={frames}
+          shot={lead}
           demo={p.demo}
           labels={{ run: t.showcase.run, stop: t.showcase.stop, title: t.showcase.frameTitle }}
         />
+        <div className="feature__text">
+          <h2 id="run-title" className="feature__name" data-reveal>{p.name}</h2>
+          <p className="feature__status" data-reveal style={{ ["--i" as string]: 1 }}>{t.showcase.latest}</p>
+          <p className="lead feature__lede" data-reveal style={{ ["--i" as string]: 2 }}>{t.showcase.lede}</p>
+          <ul className="feature__points" data-reveal style={{ ["--i" as string]: 3 }}>
+            {t.showcase.points.map((x) => <li key={x}>{x}</li>)}
+          </ul>
+          <p className="feature__stack muted" data-reveal style={{ ["--i" as string]: 4 }}>{p.stack.join(" · ")}</p>
+          <div className="feature__actions" data-reveal style={{ ["--i" as string]: 5 }}>
+            <a className="btn" href={p.demo} target="_blank" rel="noopener noreferrer">{t.showcase.open} ↗</a>
+            <Link className="link" href={projectHref(lang, p.slug)}>{t.showcase.caseStudy}</Link>
+          </div>
+        </div>
       </div>
+      <ul className="feature__strip">
+        {strip.map((f, i) => (
+          <li key={f.src} data-reveal style={{ ["--i" as string]: i }}>
+            <figure>
+              <div className="plate">
+                <Image src={f.src} alt={f.alt} width={f.width} height={f.height} sizes="(min-width: 1024px) 25vw, 50vw" />
+              </div>
+              <figcaption>
+                <span className="strip__name">{f.name}</span>
+                <span className="muted">{f.fact}</span>
+              </figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
 
 function Work({ lang }: { lang: Lang }) {
   const t = ui(lang);
-  const rows: LedgerRow[] = projects.map((p) => ({
-    slug: p.slug,
-    href: projectHref(lang, p.slug),
-    name: p.name,
-    kind: [p.kind[lang], p.demo ? t.work.live : null, p.collaboration ? t.work.team : null].filter(Boolean).join(" · "),
-    year: p.year,
-    image: p.cover ? { src: p.cover.src, width: p.cover.width, height: p.cover.height } : undefined,
-  }));
+  const rest = projects.filter((p) => p.slug !== MAIN);
+  const big = rest.filter((p) => p.cover);
+  const small = rest.filter((p) => !p.cover);
   return (
-    <section id="work" aria-labelledby="work-title" className="section">
-      <Ledger rows={rows} title={t.work.title} />
+    <section id="work" aria-labelledby="work-title" className="work">
+      <div className="work__head">
+        <h2 id="work-title" className="head" data-reveal>{t.work.title}</h2>
+        <p className="lead work__lede" data-reveal style={{ ["--i" as string]: 1 }}>{t.work.lede}</p>
+      </div>
+      <div className="work__list">
+        {big.map((p, i) => {
+          const phones = p.cover?.frame === "phone" ? [p.cover, ...p.gallery.filter((m) => m.frame === "phone")].slice(0, 3) : [];
+          return (
+            <article key={p.slug} className={`proj${i % 2 ? " proj--flip" : ""}`} aria-labelledby={`p-${p.slug}`}>
+              <Link href={projectHref(lang, p.slug)} className="proj__media plate" data-reveal tabIndex={-1} aria-hidden>
+                {phones.length > 0 ? (
+                  <span className="proj__phones">
+                    {phones.map((m) => (
+                      <Image key={m.src} src={m.src} alt="" width={m.width} height={m.height} sizes="15vw" />
+                    ))}
+                  </span>
+                ) : (
+                  p.cover && <Image src={p.cover.src} alt="" width={p.cover.width} height={p.cover.height} sizes="(min-width: 1024px) 55vw, 100vw" />
+                )}
+              </Link>
+              <div className="proj__text" data-reveal style={{ ["--i" as string]: 1 }}>
+                <h3 id={`p-${p.slug}`} className="proj__name">
+                  <Link href={projectHref(lang, p.slug)} className="link-plain">{p.name}</Link>
+                </h3>
+                <p className="proj__meta">
+                  {p.kind[lang]} · {statusLabel[p.status][lang]} · {p.year}
+                </p>
+                <p className="proj__tagline">{p.tagline[lang]}</p>
+                {p.collaboration && (
+                  <p className="proj__team muted">
+                    {lang === "en" ? "Team project with" : "Proyecto en equipo con"} {p.collaboration.owner}. {p.collaboration.share[lang]}
+                  </p>
+                )}
+                <ul className="proj__facts">
+                  {p.facts[lang].slice(0, 3).map((f) => <li key={f}>{f}</li>)}
+                </ul>
+                <p className="proj__stack muted">{p.stack.join(" · ")}</p>
+                <p className="proj__links">
+                  <Link className="btn btn--ink" href={projectHref(lang, p.slug)}>{t.work.caseStudy}</Link>
+                  {p.demo && <a className="link" href={p.demo} target="_blank" rel="noopener noreferrer">{t.work.demo} ↗</a>}
+                  {p.repo.private
+                    ? <span className="muted">{t.work.private}</span>
+                    : <a className="link" href={p.repo.url} target="_blank" rel="noopener noreferrer">{t.work.code} ↗</a>}
+                </p>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+      {small.length > 0 && (
+        <div className="work__small">
+          <h3 className="work__smallTitle" data-reveal>{t.work.smaller}</h3>
+          <ul>
+            {small.map((p, i) => (
+              <li key={p.slug} data-reveal style={{ ["--i" as string]: i }}>
+                <Link href={projectHref(lang, p.slug)} className="small-proj">
+                  <span className="small-proj__name">{p.name}</span>
+                  <span className="small-proj__meta muted">{p.kind[lang]} · {statusLabel[p.status][lang]} · {p.year}</span>
+                  <span className="small-proj__tagline">{p.tagline[lang]}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </section>
   );
 }

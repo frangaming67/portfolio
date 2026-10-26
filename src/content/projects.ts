@@ -80,8 +80,8 @@ export const projects: Project[] = [
     },
     cover: {
       src: "/projects/franco-lorenzi-web/hero.webp",
-      width: 1440,
-      height: 900,
+      width: 2000,
+      height: 1250,
       frame: "browser",
       alt: {
         en: "Fran Lorenzi Films first screen: an aerial shot of a Mendoza interchange above the name in tall condensed capitals.",
@@ -91,29 +91,29 @@ export const projects: Project[] = [
     gallery: [
       {
         src: "/projects/franco-lorenzi-web/trabajos.webp",
-        width: 1440,
-        height: 900,
+        width: 2000,
+        height: 1250,
         frame: "browser",
         alt: { en: "The works grid in black and white, each tile with its title, format and length.", es: "La grilla de trabajos en blanco y negro, cada uno con título, formato y duración." },
       },
       {
         src: "/projects/franco-lorenzi-web/tipos.webp",
-        width: 1440,
-        height: 900,
+        width: 2000,
+        height: 1250,
         frame: "browser",
         alt: { en: "Works by kind: corporate, with a preview playing beside the list.", es: "Trabajos por tipo: corporativos, con un adelanto al lado de la lista." },
       },
       {
         src: "/projects/franco-lorenzi-web/placa.webp",
-        width: 1440,
-        height: 900,
+        width: 2000,
+        height: 1250,
         frame: "browser",
         alt: { en: "The title card tool: type a project name, pick a format and see the opening card.", es: "La herramienta de placa: escribís el nombre del proyecto, elegís el formato y ves la placa de apertura." },
       },
       {
         src: "/projects/franco-lorenzi-web/fotos.webp",
-        width: 1440,
-        height: 900,
+        width: 2000,
+        height: 1250,
         frame: "browser",
         alt: { en: "Photos section: stills pulled from the films, in a masonry layout.", es: "Sección de fotos: cuadros sacados de los videos, en mosaico." },
       },
@@ -202,8 +202,8 @@ export const projects: Project[] = [
     },
     cover: {
       src: "/projects/frontdesk-ai/landing.webp",
-      width: 1440,
-      height: 900,
+      width: 2000,
+      height: 1250,
       frame: "browser",
       alt: {
         en: "FrontDesk AI landing page: \"A warm welcome. At any hour.\" next to a chat preview and a high-intent lead card.",
@@ -213,8 +213,8 @@ export const projects: Project[] = [
     gallery: [
       {
         src: "/projects/frontdesk-ai/chat.webp",
-        width: 1440,
-        height: 900,
+        width: 2000,
+        height: 1250,
         frame: "browser",
         alt: {
           en: "Guided chat with a three-step progress bar and suggested questions.",
@@ -223,8 +223,8 @@ export const projects: Project[] = [
       },
       {
         src: "/projects/frontdesk-ai/dashboard.webp",
-        width: 1440,
-        height: 900,
+        width: 2000,
+        height: 1250,
         frame: "browser",
         alt: {
           en: "Lead dashboard with metrics, the latest lead and search filters.",
