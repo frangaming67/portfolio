@@ -346,8 +346,8 @@ export const projects: Project[] = [
       es: "Las calculadoras científicas, los sistemas de álgebra y los graficadores están hechos para mirarse. El soporte para lectores de pantalla se agrega al final, los pasos de resolución son sólo visuales y los gráficos quedan cerrados para personas ciegas. Un estudiante ciego que habla español no tiene una sola herramienta para dictar, escuchar, resolver y explorar matemática sin pantalla.",
     },
     solution: {
-      en: "A client-only React and TypeScript web app that treats accessibility as architecture. Ten tools (calculator, algebra and calculus, matrices, statistics, graphs and more) behind one keyboard-first interface. Results and step-by-step procedures are read aloud, graphs can be explored with arrow keys and sound, and everything runs locally in Web Workers, offline.",
-      es: "Una app web en React y TypeScript, sin servidor, que trata la accesibilidad como arquitectura. Diez herramientas (calculadora, álgebra y cálculo, matrices, estadística, gráficos y más) detrás de una interfaz pensada para teclado. Los resultados y los pasos se leen en voz alta, los gráficos se exploran con flechas y sonido, y todo corre localmente en Web Workers, sin conexión.",
+      en: "A client-only React and TypeScript web app that treats accessibility as architecture. Thirteen tools (algebra and calculus, matrices, statistics, probability, graphs, converters and more) around a talking scientific calculator, all usable from the keyboard. Results and step-by-step procedures are read aloud, graphs can be explored with arrow keys and sound, and everything runs locally in Web Workers, offline.",
+      es: "Una app web en React y TypeScript, sin servidor, que trata la accesibilidad como arquitectura. Trece herramientas (álgebra y cálculo, matrices, estadística, probabilidad, gráficos, conversores y más) alrededor de una calculadora científica que habla, todas usables con el teclado. Los resultados y los pasos se leen en voz alta, los gráficos se exploran con flechas y sonido, y todo corre localmente en Web Workers, sin conexión.",
     },
     role: {
       en: "Product owner and spec author. I wrote the requirements (usable without looking at the screen), the 5-phase roadmap and a strict inspect, fix, test, close protocol, and accepted each phase against tests and dated audits.",
@@ -382,12 +382,12 @@ export const projects: Project[] = [
     facts: {
       en: [
         "186 automated tests in CI (unit, browser and offline)",
-        "10 tools · 5 visual themes, including high contrast",
+        "13 tools around a talking scientific calculator",
         "No backend, no account: runs entirely in the browser",
       ],
       es: [
         "186 tests automatizados en CI (unitarios, de navegador y sin conexión)",
-        "10 herramientas · 5 temas visuales, incluido alto contraste",
+        "13 herramientas alrededor de una calculadora científica que habla",
         "Sin servidor ni cuenta: corre entero en el navegador",
       ],
     },
@@ -396,35 +396,36 @@ export const projects: Project[] = [
       es: "Validarlo con personas que usan lectores de pantalla (NVDA, JAWS, VoiceOver) y publicar una demo en vivo.",
     },
     cover: {
-      src: "/projects/mathvoice/steps.webp",
-      width: 1600,
-      height: 1075,
+      src: "/projects/mathvoice/calc.webp",
+      width: 2000,
+      height: 1250,
       frame: "browser",
       alt: {
-        en: "High-contrast theme: solve(x^2-5x+6=0) gives x = 2 and x = 3, with a 6-step procedure and \"listen to step\" buttons.",
-        es: "Tema de alto contraste: solve(x^2-5x+6=0) da x = 2 y x = 3, con un procedimiento de 6 pasos y botones para escuchar cada paso.",
+        en: "The MathVoice calculator: 2·sin(π/6) + √16 typed in the display and its result, 5, beside a scientific keypad.",
+        es: "La calculadora de MathVoice: 2·sen(π/6) + √16 escrito en la pantalla y su resultado, 5, al lado de un teclado científico.",
       },
     },
     gallery: [
       {
-        src: "/projects/mathvoice/graph.webp",
-        width: 1440,
-        height: 700,
-        frame: "none",
-        alt: {
-          en: "Two functions plotted as solid and dashed curves, distinguishable without color.",
-          es: "Dos funciones graficadas con línea continua y punteada, distinguibles sin color.",
-        },
+        src: "/projects/mathvoice/algebra.webp",
+        width: 2000,
+        height: 1250,
+        frame: "browser",
+        alt: { en: "Solving x² − 5x + 6 = 0: x = 2 and x = 3, with a 6-step procedure that can be heard step by step.", es: "Resolviendo x² − 5x + 6 = 0: x = 2 y x = 3, con un procedimiento de 6 pasos que se puede escuchar paso por paso." },
       },
       {
-        src: "/projects/mathvoice/events.webp",
-        width: 1353,
-        height: 1206,
+        src: "/projects/mathvoice/graph.webp",
+        width: 2000,
+        height: 1250,
         frame: "browser",
-        alt: {
-          en: "Text description of a graph: zeros, extrema and intersections, each with a \"go to this point\" button.",
-          es: "Descripción en texto de un gráfico: ceros, extremos e intersecciones, cada uno con un botón para ir a ese punto.",
-        },
+        alt: { en: "Two functions plotted as solid and dashed lines, each described in words: zeros, growth and intersections.", es: "Dos funciones graficadas con línea continua y punteada, cada una descrita en palabras: ceros, crecimiento e intersecciones." },
+      },
+      {
+        src: "/projects/mathvoice/tools.webp",
+        width: 2000,
+        height: 1250,
+        frame: "browser",
+        alt: { en: "The tools menu: calculator, algebra and calculus, matrices, statistics, probability, graphs and more.", es: "El menú de herramientas: calculadora, álgebra y cálculo, matrices, estadística, probabilidad, gráficos y más." },
       },
     ],
   },
