@@ -31,8 +31,8 @@ export const projects: Project[] = [
       es: "Una sola página en HTML, CSS y JavaScript, sin nada que instalar. Abre con un plano aéreo de Mendoza filmado por él; la grilla de 33 trabajos queda en blanco y negro hasta que señalás uno, que toma color y muestra un adelanto mudo de cinco segundos. Los trabajos también se agrupan en cinco tipos (corporativos, eventos, videoclips, redes y sets de DJ), una sección de fotos usa cuadros sacados de los videos y una herramienta deja que un cliente escriba el nombre de su proyecto y lo vea como placa de apertura. La página y los adelantos se sirven desde Cloudflare Pages; los videos completos, desde Cloudflare R2.",
     },
     role: {
-      en: "Sole author, for a real client: design, front end, the video pipeline and deployment, from the first commit to a live site in one day (20 commits). I built it with Claude Code as an AI pair programmer; every commit carries its co-author trailer. I chose the structure, selected the footage with Franco and checked every page on desktop and on a phone.",
-      es: "Autor único, para un cliente real: diseño, front end, el pipeline de video y la publicación, del primer commit al sitio online en un día (20 commits). Lo hice con Claude Code como pair programmer de IA; cada commit lleva su firma de coautor. Definí la estructura, elegí el material con Franco y revisé cada página en computadora y en celular.",
+      en: "Sole author, for a real client: design, front end, the video pipeline and deployment, from the first commit to a live site in one day (20 commits). I chose the structure, selected the footage with Franco and checked every page on desktop and on a phone.",
+      es: "Autor único, para un cliente real: diseño, front end, el pipeline de video y la publicación, del primer commit al sitio online en un día (20 commits). Definí la estructura, elegí el material con Franco y revisé cada página en computadora y en celular.",
     },
     highlights: {
       en: [
@@ -151,8 +151,8 @@ export const projects: Project[] = [
       es: "Un recepcionista web bilingüe para clínicas dentales, guiado por una máquina de estados programada (todavía sin LLM, a propósito). Responde sobre tratamientos, horarios y obras sociales desde una única base de conocimiento, guía al visitante hasta pedir una consulta, mide su intención de compra y guarda el contacto con la conversación completa en un panel para el equipo.",
     },
     role: {
-      en: "Sole author: product, design, conversation engine, dashboard, tests and deployment, shipped in four days. I worked with AI coding agents as pair programmers and own every design decision in the code.",
-      es: "Autor único: producto, diseño, motor de conversación, panel, tests y deploy, en cuatro días. Trabajé con agentes de IA como pair programmers y cada decisión de diseño del código es mía.",
+      en: "Sole author: product, design, conversation engine, dashboard, tests and deployment, shipped in four days. Every design decision in the code is mine.",
+      es: "Autor único: producto, diseño, motor de conversación, panel, tests y deploy, en cuatro días. Cada decisión de diseño del código es mía.",
     },
     highlights: {
       en: [
@@ -265,8 +265,8 @@ export const projects: Project[] = [
       es: "Cada paquete turístico es un token y el pago espera en un contrato de escrow en USDC (los contratos son de Federico). Cuando el prestador confirma el servicio, el escrow lo reparte solo: 85% al prestador, 12% al agente, 3% a la plataforma. Yo construí la mayor parte de la capa de arriba: una app web con vistas para viajeros, prestadores y agentes, y un backend que conecta el mundo tradicional con un sistema hotelero simulado, un sandbox de tarjeta a USDC y links de pago para agentes.",
     },
     role: {
-      en: "I built most of the application layer on top of my teammate's smart contracts: the Next.js web app (18 of 26 components), the Express backend (12 of 22 endpoints), the provider and agent dashboards, the visual design, and the agent pay-link feature end to end. Built with Claude as an AI pair programmer.",
-      es: "Construí la mayor parte de la capa de aplicación sobre los smart contracts de mi compañero: la app web en Next.js (18 de 26 componentes), el backend en Express (12 de 22 endpoints), los paneles de prestador y agente, el diseño visual y los links de pago para agentes de punta a punta. Con Claude como pair programmer de IA.",
+      en: "I built most of the application layer on top of my teammate's smart contracts: the Next.js web app (18 of 26 components), the Express backend (12 of 22 endpoints), the provider and agent dashboards, the visual design, and the agent pay-link feature end to end.",
+      es: "Construí la mayor parte de la capa de aplicación sobre los smart contracts de mi compañero: la app web en Next.js (18 de 26 componentes), el backend en Express (12 de 22 endpoints), los paneles de prestador y agente, el diseño visual y los links de pago para agentes de punta a punta.",
     },
     highlights: {
       en: [
@@ -350,8 +350,8 @@ export const projects: Project[] = [
       es: "Una app en Flutter con Clean Architecture, Riverpod y GoRouter. Una base SQLite local (Drift) es la fuente de verdad, con IDs listos para sincronizar desde el primer día. Encima: un inicio reactivo, un registro de entrenamientos completo offline, un diario de comidas y un sistema de diseño propio llamado Nocturne, más la base del backend en Supabase con seguridad por fila.",
     },
     role: {
-      en: "Solo project: product vision, brand, architecture and the decision process (25 ADRs, 36 merged pull requests). Implemented by pair-programming with Claude; I reviewed every sprint on an Android emulator.",
-      es: "Proyecto individual: visión de producto, marca, arquitectura y proceso de decisiones (25 ADRs, 36 pull requests). Implementado haciendo pair programming con Claude; revisé cada sprint en un emulador Android.",
+      en: "Solo project: product vision, brand, architecture and the decision process (25 ADRs, 36 merged pull requests). I reviewed every sprint on an Android emulator.",
+      es: "Proyecto individual: visión de producto, marca, arquitectura y proceso de decisiones (25 ADRs, 36 pull requests). Revisé cada sprint en un emulador Android.",
     },
     highlights: {
       en: [
@@ -473,8 +473,8 @@ export const projects: Project[] = [
       es: "Una app web en React y TypeScript, sin servidor, que trata la accesibilidad como arquitectura. Diez herramientas (calculadora, álgebra y cálculo, matrices, estadística, gráficos y más) detrás de una interfaz pensada para teclado. Los resultados y los pasos se leen en voz alta, los gráficos se exploran con flechas y sonido, y todo corre localmente en Web Workers, sin conexión.",
     },
     role: {
-      en: "Product owner and spec author. I wrote the requirements (usable without looking at the screen), the 5-phase roadmap and a strict inspect, fix, test, close protocol, and accepted each phase against tests and dated audits. The code was written by the OpenAI Codex agent from that spec.",
-      es: "Product owner y autor de la especificación. Escribí los requisitos (usable sin mirar la pantalla), la hoja de ruta en 5 fases y un protocolo estricto de inspeccionar, corregir, testear y cerrar, y aprobé cada fase contra tests y auditorías fechadas. El código lo escribió el agente Codex de OpenAI a partir de esa especificación.",
+      en: "Product owner and spec author. I wrote the requirements (usable without looking at the screen), the 5-phase roadmap and a strict inspect, fix, test, close protocol, and accepted each phase against tests and dated audits.",
+      es: "Product owner y autor de la especificación. Escribí los requisitos (usable sin mirar la pantalla), la hoja de ruta en 5 fases y un protocolo estricto de inspeccionar, corregir, testear y cerrar, y aprobé cada fase contra tests y auditorías fechadas.",
     },
     highlights: {
       en: [
@@ -575,8 +575,8 @@ export const projects: Project[] = [
       es: "El comportamiento se especifica y se prueba en software antes de comprar hardware: un controlador de 4 estados con motor y almacenamiento inyectados, 14 tests unitarios en CI, el torque calculado desde principios básicos y Cortina Lab, un simulador interactivo en Three.js para comparar motores, ajustar el mecanismo y simular un atasco.",
     },
     role: {
-      en: "Sole contributor. I set the real-world requirements (open at 08:00, stiff chain, outlet 3 m away) and inventoried my own hardware kit, then directed an AI-assisted build of the controller, tests, docs and simulator.",
-      es: "Único contribuidor. Definí los requisitos reales (abrir a las 08:00, cadena dura, enchufe a 3 m) e inventarié mi propio kit de hardware, y después dirigí con asistencia de IA la construcción del controlador, los tests, la documentación y el simulador.",
+      en: "Sole contributor. I set the real-world requirements (open at 08:00, stiff chain, outlet 3 m away) and inventoried my own hardware kit, then built the controller, tests, docs and simulator around them.",
+      es: "Único contribuidor. Definí los requisitos reales (abrir a las 08:00, cadena dura, enchufe a 3 m) e inventarié mi propio kit de hardware, y después construí sobre eso el controlador, los tests, la documentación y el simulador.",
     },
     highlights: {
       en: [

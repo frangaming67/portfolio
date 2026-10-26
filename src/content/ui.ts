@@ -45,7 +45,7 @@ const strings = {
     },
     about: {
       title: "About me",
-      body: "I'm Francisco, an Information Systems student at Universidad Champagnat. I build complete products and care about proving they work. I use AI coding agents (Claude Code, Codex) as pair programmers, and every case study says where an agent wrote the code; the product, the architecture decisions, the reviews and the testing are mine.",
+      body: "I'm Francisco, an Information Systems student at Universidad Champagnat. I build complete products and care about proving they work. I like owning the whole thing: the product, the architecture decisions, the details of the interface and the testing that shows it works.",
       facts: [
         { label: "Based in", value: "Mendoza, Argentina" },
         { label: "Studying", value: "Information Systems" },
@@ -101,7 +101,7 @@ const strings = {
     footer: {
       motto1: "Don't take my word for it.",
       motto2: "Run it.",
-      built: "Built with Next.js and an AI pair programmer.",
+      built: "Built with Next.js.",
       top: "Back to top",
     },
   },
@@ -148,7 +148,7 @@ const strings = {
     },
     about: {
       title: "Sobre mí",
-      body: "Soy Francisco, estudiante de Sistemas de Información en la Universidad Champagnat. Construyo productos completos y me importa demostrar que funcionan. Uso agentes de IA (Claude Code, Codex) como pair programmers, y cada caso de estudio dice dónde escribió el código un agente; el producto, las decisiones de arquitectura, las revisiones y las pruebas son mías.",
+      body: "Soy Francisco, estudiante de Sistemas de Información en la Universidad Champagnat. Construyo productos completos y me importa demostrar que funcionan. Me gusta hacerme cargo de todo: el producto, las decisiones de arquitectura, los detalles de la interfaz y las pruebas que demuestran que funciona.",
       facts: [
         { label: "Vivo en", value: "Mendoza, Argentina" },
         { label: "Estudio", value: "Sistemas de Información" },
@@ -204,7 +204,7 @@ const strings = {
     footer: {
       motto1: "Don't take my word for it.",
       motto2: "Run it.",
-      built: "Hecho con Next.js y un pair programmer de IA.",
+      built: "Hecho con Next.js.",
       top: "Volver arriba",
     },
   },
