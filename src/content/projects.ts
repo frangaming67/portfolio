@@ -7,94 +7,129 @@ import type { L, Project } from "./types";
  */
 export const projects: Project[] = [
   {
-    slug: "mediturnos",
-    name: "MediTurnos",
+    slug: "franco-lorenzi-web",
+    name: "Fran Lorenzi Films",
+    kind: { en: "Website for a filmmaker", es: "Sitio para un realizador" },
     year: "2026",
-    status: "working-prototype",
+    status: "live-demo",
     categories: ["web"],
     featured: true,
-    repo: { url: "https://github.com/frangaming67/Mediturnos", private: false },
-    stack: ["PHP 8.2", "MariaDB", "SQL", "Vanilla JS", "Apache"],
-    accent: "#2f6fed",
+    repo: { url: "https://github.com/frangaming67/franco-lorenzi-web", private: true },
+    demo: "https://franco-lorenzi-web.pages.dev",
+    stack: ["HTML", "CSS", "JavaScript", "Node.js", "ffmpeg + VMAF", "Cloudflare Pages + R2"],
+    accent: "#2456e0",
     tagline: {
-      en: "A medical booking platform where the database itself makes double booking impossible.",
-      es: "Una plataforma de turnos médicos donde la propia base de datos hace imposible el doble turno.",
+      en: "A portfolio site for a filmmaker from Mendoza: 33 films that play the moment you point at them.",
+      es: "El sitio de un realizador audiovisual de Mendoza: 33 trabajos que se reproducen apenas los señalás.",
     },
     problem: {
-      en: "Clinics need patients to book against real availability while staff manage agendas, payments and insurance. The hard parts are about correctness: two patients grabbing the same slot at the same instant, unpaid bookings holding slots forever, insurance discounts being gamed, and lab results leaking through public URLs.",
-      es: "Las clínicas necesitan que los pacientes reserven sobre disponibilidad real mientras el personal maneja agendas, cobros y coberturas. Lo difícil es que todo sea correcto: dos pacientes tomando el mismo horario en el mismo instante, reservas impagas bloqueando turnos para siempre, descuentos de cobertura mal usados y estudios filtrándose por URLs públicas.",
+      en: "Franco Lorenzi films music videos, events, brand reels and DJ sets, and his work lived scattered across Instagram and YouTube. A filmmaker's site has to show moving pictures without making visitors wait, and video is the heaviest thing on the web: dozens of 4K files, some over 100 MB, which neither GitHub nor a static host will even accept.",
+      es: "Franco Lorenzi filma videoclips, eventos, reels para marcas y sets de DJ, y su trabajo estaba repartido entre Instagram y YouTube. El sitio de un realizador tiene que mostrar imágenes en movimiento sin hacer esperar a nadie, y el video es lo más pesado de la web: decenas de archivos en 4K, algunos de más de 100 MB, que ni GitHub ni un hosting estático aceptan.",
     },
     solution: {
-      en: "A server-rendered system with four roles (admin, receptionist, doctor, patient) on a framework-free PHP MVC over MariaDB. Patients book through a 4-step wizard that works without JavaScript, payments use hold windows, doctors keep clinical records and prescriptions, and admins get KPIs. The critical rules live in the database engine, not in PHP.",
-      es: "Un sistema renderizado en el servidor con cuatro roles (admin, recepción, médico, paciente) sobre un MVC propio en PHP y MariaDB. Los pacientes reservan con un asistente de 4 pasos que funciona sin JavaScript, los pagos tienen ventanas de reserva, los médicos llevan historia clínica y recetas, y la administración tiene indicadores. Las reglas críticas viven en el motor de base de datos, no en PHP.",
+      en: "A single page in plain HTML, CSS and JavaScript, with nothing to install. It opens on his own aerial footage of Mendoza; the grid of 33 works stays in black and white until you point at one, then it takes colour and plays a silent five-second preview. Works are also grouped into five kinds (corporate, events, music videos, social, DJ sets), a photo section uses stills pulled from the films, and a small tool lets a client type their project's name and see it as an opening title card. Pages and previews are served by Cloudflare Pages; the full films stream from Cloudflare R2.",
+      es: "Una sola página en HTML, CSS y JavaScript, sin nada que instalar. Abre con un plano aéreo de Mendoza filmado por él; la grilla de 33 trabajos queda en blanco y negro hasta que señalás uno, que toma color y muestra un adelanto mudo de cinco segundos. Los trabajos también se agrupan en cinco tipos (corporativos, eventos, videoclips, redes y sets de DJ), una sección de fotos usa cuadros sacados de los videos y una herramienta deja que un cliente escriba el nombre de su proyecto y lo vea como placa de apertura. La página y los adelantos se sirven desde Cloudflare Pages; los videos completos, desde Cloudflare R2.",
     },
     role: {
-      en: "Sole author and owner (99 of 99 commits). I set the scope, designed the schema and the security model, built it feature by feature with Git Flow, and prepared it for my oral defense at university. I built it with Claude as an AI pair programmer (98 of the 99 commits carry its co-author trailer); I directed, reviewed and tested each feature.",
-      es: "Autor y dueño único (99 de 99 commits). Definí el alcance, diseñé el esquema y el modelo de seguridad, lo construí funcionalidad por funcionalidad con Git Flow y lo preparé para defenderlo oralmente en la carrera. Lo construí con Claude como pair programmer de IA (98 de los 99 commits llevan su firma de coautor); dirigí, revisé y probé cada funcionalidad.",
+      en: "Sole author, for a real client: design, front end, the video pipeline and deployment, from the first commit to a live site in one day (20 commits). I built it with Claude Code as an AI pair programmer; every commit carries its co-author trailer. I chose the structure, selected the footage with Franco and checked every page on desktop and on a phone.",
+      es: "Autor único, para un cliente real: diseño, front end, el pipeline de video y la publicación, del primer commit al sitio online en un día (20 commits). Lo hice con Claude Code como pair programmer de IA; cada commit lleva su firma de coautor. Definí la estructura, elegí el material con Franco y revisé cada página en computadora y en celular.",
     },
     highlights: {
       en: [
-        "Race-free booking: a UNIQUE index on a generated column makes InnoDB reject the second of two simultaneous bookings, closing the check-then-insert race that application code can't.",
-        "28 tables, 5 views, 2 triggers and 2 stored procedures, built through 18 ordered migrations, with role-based access across 4 roles and 22 permissions.",
-        "A threat model with attacks actually run against the app (stored XSS, CSRF on 18 state-changing actions, an insurance-plan exploit that made visits free), each one fixed and documented.",
-        "Defense-in-depth uploads: photos are validated and re-encoded, and lab PDFs live outside the web root, served only to the patient, a treating doctor or staff.",
-        "A zero-dependency SMTP client over raw sockets (STARTTLS, AUTH LOGIN) behind a swappable Mailer interface.",
+        "A compression pipeline that measures quality instead of guessing: each film is encoded at a ladder of x264 quality levels (CRF 28 down to 18), scored against the original with Netflix's VMAF metric, and the lightest encode scoring 95 or more is kept.",
+        "Previews cost nothing until they're wanted: the five-second clip downloads the first time you point at a work, never on page load. On a phone, the work in the middle of the screen takes colour and plays its preview as you scroll.",
+        "Stills are chosen by sharpness: a Node script pulls the key frames of every film, measures how sharp each one is and builds contact sheets to pick from.",
+        "Large files live where they fit: the full films stream from Cloudflare R2 because GitHub rejects files over 100 MB and Pages over 25 MB; one constant switches between R2 online and the local folder.",
       ],
       es: [
-        "Reservas sin condición de carrera: un índice UNIQUE sobre una columna generada hace que InnoDB rechace la segunda de dos reservas simultáneas, algo que la aplicación no puede garantizar chequeando antes de insertar.",
-        "28 tablas, 5 vistas, 2 triggers y 2 procedimientos almacenados, construidos con 18 migraciones ordenadas, y control de acceso por roles con 4 roles y 22 permisos.",
-        "Un modelo de amenazas con ataques ejecutados de verdad contra la app (XSS almacenado, CSRF en 18 acciones, un exploit de cobertura que dejaba las consultas gratis), cada uno corregido y documentado.",
-        "Subidas con defensa en profundidad: las fotos se validan y se recodifican, y los PDF de estudios viven fuera de la raíz web y sólo se entregan al paciente, a su médico o al personal.",
-        "Un cliente SMTP sin dependencias sobre sockets (STARTTLS, AUTH LOGIN) detrás de una interfaz Mailer intercambiable.",
+        "Un pipeline de compresión que mide la calidad en vez de adivinarla: cada video se codifica con una escala de calidades x264 (CRF 28 a 18), se compara con el original con VMAF, la métrica de Netflix, y queda la versión más liviana que saca 95 o más.",
+        "Los adelantos no cuestan nada hasta que alguien los quiere: el clip de cinco segundos se descarga la primera vez que señalás un trabajo, nunca al cargar la página. En el celular, el trabajo del centro de la pantalla toma color y muestra su adelanto mientras scrolleás.",
+        "Las fotos se eligen por nitidez: un script en Node saca los cuadros clave de cada video, mide qué tan nítido es cada uno y arma hojas de contacto para elegir.",
+        "Los archivos grandes viven donde entran: los videos completos salen de Cloudflare R2 porque GitHub rechaza archivos de más de 100 MB y Pages de más de 25 MB; una sola constante cambia entre R2 online y la carpeta local.",
       ],
     },
     decisions: {
       en: [
-        "ADR-0002 · Correctness lives in the database. SELECT … FOR UPDATE, LOCK TABLES and SERIALIZABLE isolation were each considered and rejected with reasons.",
-        "ADR-0001 · No framework, on purpose, so every mechanism can be explained line by line. The risk is mitigated with server-side prepared statements everywhere.",
-        "Ports-and-adapters notifications: 20 typed notification kinds over in-app and email channels, so adding push needs no controller changes.",
-        "Integration tests run against the real engine instead of mocks, because UNIQUE, CHECK and generated columns only exist in MariaDB.",
+        "No framework and no build step: one HTML file, one stylesheet and one script, so Franco's site can be edited and published from any computer with Node and nothing else.",
+        "Black and white until chosen: the grid stays calm with 33 thumbnails on screen, and colour becomes the feedback for what you're about to open.",
+        "Hover previews only on devices with a precise pointer, and nothing autoplays with sound: the full film opens in a dialog, with sound, only when you ask for it.",
       ],
       es: [
-        "ADR-0002 · La integridad vive en la base de datos. SELECT … FOR UPDATE, LOCK TABLES y el aislamiento SERIALIZABLE se evaluaron y se descartaron con argumentos.",
-        "ADR-0001 · Sin framework, a propósito, para poder explicar cada mecanismo línea por línea. El riesgo se mitiga con sentencias preparadas del lado del servidor en todas partes.",
-        "Notificaciones con puertos y adaptadores: 20 tipos de aviso sobre canales in-app y email, así que sumar push no requiere tocar controladores.",
-        "Tests de integración contra el motor real en vez de mocks, porque UNIQUE, CHECK y las columnas generadas sólo existen en MariaDB.",
+        "Sin framework y sin build: un HTML, una hoja de estilos y un script, así el sitio de Franco se puede editar y publicar desde cualquier computadora que tenga Node y nada más.",
+        "Blanco y negro hasta elegir: la grilla queda tranquila con 33 miniaturas en pantalla, y el color pasa a ser la señal de lo que estás por abrir.",
+        "Adelantos al pasar el mouse sólo en dispositivos con puntero preciso, y nada arranca con sonido: el video completo se abre en una ventana, con sonido, sólo cuando lo pedís.",
       ],
     },
     facts: {
       en: [
-        "99 commits with Git Flow and Conventional Commits",
-        "28 tables · 5 views · 2 triggers · 2 stored procedures",
-        "332 integration checks across 7 test scripts",
-        "4 Architecture Decision Records and 31 docs",
+        "33 films in 5 categories, each with a cover and a 5-second preview",
+        "Built and published in one day, October 2026 (20 commits)",
+        "No dependencies on the page: HTML, CSS and JavaScript only",
+        "Live on Cloudflare Pages, full films on Cloudflare R2",
       ],
       es: [
-        "99 commits con Git Flow y Conventional Commits",
-        "28 tablas · 5 vistas · 2 triggers · 2 procedimientos",
-        "332 verificaciones de integración en 7 scripts de prueba",
-        "4 Architecture Decision Records y 31 documentos",
+        "33 trabajos en 5 categorías, cada uno con portada y adelanto de 5 segundos",
+        "Construido y publicado en un día, octubre de 2026 (20 commits)",
+        "Sin dependencias en la página: sólo HTML, CSS y JavaScript",
+        "Online en Cloudflare Pages, videos completos en Cloudflare R2",
       ],
     },
     next: {
-      en: "Ship a public demo with Docker (PHP 8.2 + MariaDB), add CI that runs the integration suite, and add screenshots and an English README.",
-      es: "Publicar una demo con Docker (PHP 8.2 + MariaDB), sumar CI que corra la suite de integración y agregar capturas y un README en inglés.",
+      en: "Connect Franco's own domain and serve the films from it, and add the work he films next.",
+      es: "Conectar el dominio propio de Franco, servir los videos desde ahí y sumar los trabajos que vaya filmando.",
     },
     cover: {
-      src: "/projects/mediturnos/race.svg",
-      width: 1200,
-      height: 760,
-      frame: "none",
+      src: "/projects/franco-lorenzi-web/hero.webp",
+      width: 1440,
+      height: 900,
+      frame: "browser",
       alt: {
-        en: "Diagram: with check-then-insert, two patients both book the same slot; with a UNIQUE index on a generated column, the database rejects the second booking with error 1062.",
-        es: "Diagrama: con chequear-e-insertar, dos pacientes reservan el mismo turno; con un índice UNIQUE sobre una columna generada, la base rechaza la segunda reserva con el error 1062.",
+        en: "Fran Lorenzi Films first screen: an aerial shot of a Mendoza interchange above the name in tall condensed capitals.",
+        es: "Primera pantalla de Fran Lorenzi Films: un plano aéreo de un nudo vial de Mendoza sobre el nombre en mayúsculas altas y angostas.",
       },
     },
-    gallery: [],
+    gallery: [
+      {
+        src: "/projects/franco-lorenzi-web/trabajos.webp",
+        width: 1440,
+        height: 900,
+        frame: "browser",
+        alt: { en: "The works grid in black and white, each tile with its title, format and length.", es: "La grilla de trabajos en blanco y negro, cada uno con título, formato y duración." },
+      },
+      {
+        src: "/projects/franco-lorenzi-web/tipos.webp",
+        width: 1440,
+        height: 900,
+        frame: "browser",
+        alt: { en: "Works by kind: corporate, with a preview playing beside the list.", es: "Trabajos por tipo: corporativos, con un adelanto al lado de la lista." },
+      },
+      {
+        src: "/projects/franco-lorenzi-web/placa.webp",
+        width: 1440,
+        height: 900,
+        frame: "browser",
+        alt: { en: "The title card tool: type a project name, pick a format and see the opening card.", es: "La herramienta de placa: escribís el nombre del proyecto, elegís el formato y ves la placa de apertura." },
+      },
+      {
+        src: "/projects/franco-lorenzi-web/fotos.webp",
+        width: 1440,
+        height: 900,
+        frame: "browser",
+        alt: { en: "Photos section: stills pulled from the films, in a masonry layout.", es: "Sección de fotos: cuadros sacados de los videos, en mosaico." },
+      },
+      {
+        src: "/projects/franco-lorenzi-web/phone.webp",
+        width: 780,
+        height: 1688,
+        frame: "phone",
+        alt: { en: "The site on a phone: aerial footage above the name.", es: "El sitio en un celular: el plano aéreo sobre el nombre." },
+      },
+    ],
   },
   {
     slug: "frontdesk-ai",
     name: "FrontDesk AI",
+    kind: { en: "Virtual receptionist", es: "Recepcionista virtual" },
     year: "2026",
     status: "live-demo",
     categories: ["web"],
@@ -201,6 +236,7 @@ export const projects: Project[] = [
   {
     slug: "otc",
     name: "OTC",
+    kind: { en: "Blockchain marketplace", es: "Marketplace en blockchain" },
     year: "2026",
     status: "working-prototype",
     categories: ["web"],
@@ -215,7 +251,7 @@ export const projects: Project[] = [
     },
     repo: { url: "https://github.com/FedericoScuri/OTC", private: false },
     stack: ["Next.js", "TypeScript", "wagmi + viem", "Express", "ethers v6", "Solidity (team)"],
-    accent: "#8b5cf6",
+    accent: "#2f6f8f",
     tagline: {
       en: "A blockchain tourism marketplace where escrow pays the hotel, the agent and the platform the moment a trip is confirmed.",
       es: "Un marketplace turístico en blockchain donde el escrow le paga al hotel, al agente y a la plataforma apenas se confirma el viaje.",
@@ -291,110 +327,9 @@ export const projects: Project[] = [
     gallery: [],
   },
   {
-    slug: "pequenito-3d",
-    name: "Pequeñito",
-    year: "2026",
-    status: "live-demo",
-    categories: ["hardware", "web"],
-    featured: true,
-    repo: { url: "https://github.com/frangaming67/pequenito-3d", private: false },
-    demo: "https://pequenito-3d.vercel.app",
-    stack: ["Three.js", "WebGL", "Vite", "glTF", "C++ (Arduino)", "ESP32-C3", "GitHub Actions"],
-    accent: "#13b5a6",
-    tagline: {
-      en: "A pocket OLED companion: 16 expressions in WebGL, plus the firmware to build the real thing.",
-      es: "Un compañero de bolsillo con pantalla OLED: 16 expresiones en WebGL y el firmware para construirlo de verdad.",
-    },
-    problem: {
-      en: "A short video showed a tiny keychain with an animated OLED face, with no parts list, wiring or code anywhere. The goal: turn it into an interactive 3D model anyone can explore, plus a clear path to building a real one.",
-      es: "Un video corto mostraba un llavero diminuto con una cara animada en una pantalla OLED, sin lista de piezas, conexiones ni código en ningún lado. El objetivo: convertirlo en un modelo 3D interactivo y en un camino claro para construir uno real.",
-    },
-    solution: {
-      en: "The keychain is modeled entirely in code with Three.js and animated with 16 keyframed expressions. A web viewer lets you orbit, switch expressions and lighting, and download the model. A Node pipeline exports a validated glTF, and an Arduino sketch for the Seeed XIAO ESP32-C3 is written to draw the same 16 faces on an SSD1306 OLED (not yet tested on a physical board). Every build ships a downloadable kit with firmware, wiring guide and model.",
-      es: "El llavero está modelado completamente en código con Three.js y animado con 16 expresiones. Un visor web permite rotarlo, cambiar expresión e iluminación y descargar el modelo. Un pipeline en Node exporta un glTF validado, y un sketch de Arduino para la Seeed XIAO ESP32-C3 está escrito para dibujar las mismas 16 caras en una pantalla SSD1306 (todavía sin probar en una placa real). Cada build genera un kit descargable con firmware, guía de conexiones y modelo.",
-    },
-    role: {
-      en: "Sole committer. I chose the reference, defined the scope (16 expressions plus a buildable kit), validated the output and set up the deployment. The code was generated with AI tools under my direction.",
-      es: "Único autor de los commits. Elegí la referencia, definí el alcance (16 expresiones y un kit construible), validé el resultado y configuré el deploy. El código se generó con herramientas de IA bajo mi dirección.",
-    },
-    highlights: {
-      en: [
-        "The whole 3D model is code: 174 meshes and 23,456 triangles, regenerated into a GLB with one command.",
-        "Asset QA as a CI gate: the Khronos glTF Validator (0 errors, 0 warnings) plus checks that all 16 clips exist and animate the same 81 tracks.",
-        "Non-blocking firmware: a millis() scheduler at about 30 fps, overflow-safe timing, debounced short and long presses, and display auto-detection with retry.",
-        "Accessible viewer: keyboard orbit and zoom, reduced-motion support and a WebGL fallback.",
-      ],
-      es: [
-        "Todo el modelo 3D es código: 174 mallas y 23.456 triángulos, regenerados como GLB con un solo comando.",
-        "Control de calidad del modelo en CI: el validador glTF de Khronos (0 errores, 0 advertencias) y chequeos de que los 16 clips existen y animan las mismas 81 pistas.",
-        "Firmware no bloqueante: un planificador con millis() a unos 30 fps, tiempos a prueba de desbordamiento, pulsación corta y larga con antirrebote, y detección automática de la pantalla con reintentos.",
-        "Visor accesible: rotación y zoom con teclado, soporte de movimiento reducido y alternativa sin WebGL.",
-      ],
-    },
-    decisions: {
-      en: [
-        "Model as code instead of a Blender file: one diffable, reproducible source for both the live viewer and the exported asset.",
-        "Every animation clip keys every node, so switching expressions can never leave stale state. A CI assertion enforces it.",
-        "The firmware drops frames after slow I²C transfers instead of queuing stale ones, and keeps running if the display is missing.",
-      ],
-      es: [
-        "Modelo como código en vez de un archivo de Blender: una sola fuente comparable y reproducible para el visor y para el modelo exportado.",
-        "Cada clip anima todos los nodos, así que cambiar de expresión nunca deja estado viejo. Un chequeo en CI lo garantiza.",
-        "El firmware descarta cuadros después de una transferencia I²C lenta en vez de acumularlos, y sigue funcionando si falta la pantalla.",
-      ],
-    },
-    facts: {
-      en: [
-        "16 animations · 174 meshes · 23,456 triangles",
-        "400 lines of C++ firmware for the ESP32-C3",
-        "glTF Validator: 0 errors, 0 warnings",
-      ],
-      es: [
-        "16 animaciones · 174 mallas · 23.456 triángulos",
-        "400 líneas de firmware en C++ para la ESP32-C3",
-        "Validador glTF: 0 errores, 0 advertencias",
-      ],
-    },
-    next: {
-      en: "The physical circuit hasn't been built yet. Next: assemble the device, film it cycling through its expressions, and add a firmware compile job to CI.",
-      es: "El circuito físico todavía no está armado. Lo próximo: construir el dispositivo, filmarlo pasando por sus expresiones y sumar la compilación del firmware a CI.",
-    },
-    cover: {
-      src: "/projects/pequenito-3d/render.webp",
-      width: 982,
-      height: 1060,
-      frame: "none",
-      alt: {
-        en: "3D render of Pequeñito: a small clear keychain with a two-tone OLED face, wires and a carabiner.",
-        es: "Render 3D de Pequeñito: un llavero transparente con una cara OLED de dos colores, cables y un mosquetón.",
-      },
-    },
-    gallery: [
-      {
-        src: "/projects/pequenito-3d/viewer.webp",
-        width: 1440,
-        height: 1300,
-        frame: "browser",
-        alt: {
-          en: "The live 3D viewer with camera presets, expression grid, timeline and lighting controls.",
-          es: "El visor 3D en vivo con cámaras, grilla de expresiones, línea de tiempo y control de luces.",
-        },
-      },
-      {
-        src: "/projects/pequenito-3d/wiring.webp",
-        width: 1020,
-        height: 540,
-        frame: "none",
-        alt: {
-          en: "Wiring diagram: XIAO ESP32-C3 to the SSD1306 display over I²C, plus a push button.",
-          es: "Diagrama de conexiones: XIAO ESP32-C3 a la pantalla SSD1306 por I²C, más un pulsador.",
-        },
-      },
-    ],
-  },
-  {
     slug: "vega",
     name: "Vega",
+    kind: { en: "Training app", es: "App de entrenamiento" },
     year: "2026",
     status: "in-progress",
     categories: ["mobile"],
@@ -517,6 +452,7 @@ export const projects: Project[] = [
   {
     slug: "mathvoice",
     name: "MathVoice",
+    kind: { en: "Accessible math", es: "Matemática accesible" },
     year: "2026",
     status: "working-prototype",
     categories: ["accessibility", "web"],
@@ -618,6 +554,7 @@ export const projects: Project[] = [
   {
     slug: "cortina",
     name: "Cortina Lab",
+    kind: { en: "Blind automation", es: "Automatización de cortina" },
     year: "2026",
     status: "early-stage",
     categories: ["hardware", "web"],
@@ -708,6 +645,7 @@ export const projects: Project[] = [
   {
     slug: "mza-beats",
     name: "MzaBeats",
+    kind: { en: "Band directory", es: "Directorio de bandas" },
     year: "2025–2026",
     status: "working-prototype",
     categories: ["web"],
@@ -761,6 +699,7 @@ export const projects: Project[] = [
   {
     slug: "blackjack-java",
     name: "Blackjack Java",
+    kind: { en: "Card game in Java", es: "Juego de cartas en Java" },
     year: "2026",
     status: "early-stage",
     categories: ["game"],
@@ -811,41 +750,27 @@ export const projects: Project[] = [
 export const stats = {
   repos: projects.length,
   liveDemos: projects.filter((p) => p.demo).length,
-  // FrontDesk 32 + MediTurnos 332 + MathVoice 186 + Cortina 17
-  tests: "560+",
-  // Vega 25 + MediTurnos 4
-  adrs: 29,
+  // FrontDesk 32 + MathVoice 186 + Cortina 17
+  tests: 235,
+  // Vega
+  adrs: 25,
 };
 
-export const skills: { title: L; items: string[] }[] = [
-  {
-    title: { en: "Languages", es: "Lenguajes" },
-    items: ["TypeScript", "JavaScript", "PHP", "SQL", "Dart", "Java"],
-  },
-  {
-    title: { en: "Web", es: "Web" },
-    items: ["React", "Next.js", "Tailwind CSS", "Three.js / WebGL", "wagmi + viem"],
-  },
-  {
-    title: { en: "Mobile", es: "Móvil" },
-    items: ["Flutter", "Riverpod", "Drift (SQLite)", "Offline-first architecture"],
-  },
-  {
-    title: { en: "Data & backend", es: "Datos y backend" },
-    items: ["MariaDB / MySQL", "PostgreSQL + Supabase (RLS)", "Express", "Redis (Upstash)", "Vercel"],
-  },
-  {
-    title: { en: "Hardware (design stage)", es: "Hardware (etapa de diseño)" },
-    items: ["ESP32-C3", "Arduino", "I²C / OLED displays", "Motor sizing & control logic"],
-  },
-  {
-    title: { en: "How I work", es: "Cómo trabajo" },
-    items: [
-      "AI coding agents (Claude Code, Codex)",
-      "Architecture Decision Records",
-      "Automated testing (Vitest, Playwright)",
-      "GitHub Actions CI",
-      "Git Flow & pull requests",
-    ],
-  },
+/** Languages I've shipped code in, each with the projects that use it. */
+export const languages: { name: string; where: string[] }[] = [
+  { name: "TypeScript", where: ["FrontDesk AI", "OTC", "MathVoice"] },
+  { name: "JavaScript", where: ["Fran Lorenzi Films", "Cortina Lab"] },
+  { name: "PHP", where: ["MzaBeats"] },
+  { name: "SQL", where: ["MzaBeats", "Vega"] },
+  { name: "Dart", where: ["Vega"] },
+  { name: "Java", where: ["Blackjack Java"] },
 ];
+
+export const tools = ["React", "Next.js", "HTML & CSS", "MariaDB / MySQL", "PostgreSQL + Supabase", "Vercel", "Cloudflare Pages"];
+
+/** Automated tests per project, for the proof bar. Counts come from each repository. */
+export const testCounts = [
+  { project: "MathVoice", count: 186, note: { en: "unit, browser and offline tests, run in CI", es: "unitarios, de navegador y sin conexión, en CI" } },
+  { project: "FrontDesk AI", count: 32, note: { en: "conversation flow, guardrails and API", es: "flujo de conversación, límites y API" } },
+  { project: "Cortina Lab", count: 17, note: { en: "the safety rules of the controller", es: "las reglas de seguridad del controlador" } },
+] satisfies { project: string; count: number; note: L }[];

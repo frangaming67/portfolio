@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import { Reveal } from "@/components/reveal";
 import { site } from "@/content/site";
 import "./globals.css";
@@ -9,13 +9,9 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const description =
-  "Francisco Basigalup, Information Systems student in Argentina, open to SWE internships. Web, mobile and embedded projects with code, tests and honest status. Don't take my word for it. Run it.";
+  "Francisco Basigalup, Information Systems student in Argentina, open to SWE internships. Websites and apps with live demos, code, tests and honest status. Don't take my word for it. Run it.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -36,8 +32,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { color: "#05070a" },
   ],
 };
 
@@ -51,13 +46,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable}`}
       suppressHydrationWarning
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: jsFlag }} />
       </head>
-      <body className="min-h-full">
+      <body>
         {children}
         <Reveal />
       </body>

@@ -8,15 +8,15 @@ export const metadata: Metadata = pageMetadata({
   lang: "es",
   title: `${site.name} — ${site.motto}`,
   description:
-    "Francisco Basigalup, estudiante de Sistemas en Argentina, busca pasantías en ingeniería de software. Proyectos web, móviles y embebidos con código, tests y estado real. No me creas: probalo.",
+    "Francisco Basigalup, estudiante de Sistemas en Argentina, busca pasantías en ingeniería de software. Sitios y apps con demos en vivo, código, tests y estado real. No me creas: probalo.",
   en: "/",
   es: "/es/",
 });
 
 export default function Page() {
   return (
-    <Shell lang="es" altHref="/">
-      <Home lang="es" />
+    <Shell lang="es" altHref="/" home>
+      <Home lang="es" altHref="/" />
     </Shell>
   );
 }

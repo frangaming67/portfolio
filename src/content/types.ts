@@ -25,6 +25,8 @@ export type Media = {
 export type Project = {
   slug: string;
   name: string;
+  /** What kind of thing it is, in two or three words. */
+  kind: L;
   year: string;
   status: ProjectStatus;
   categories: Category[];

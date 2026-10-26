@@ -25,7 +25,7 @@ All copy lives in three files, so updating the site never means touching compone
 |---|---|
 | `src/content/site.ts` | Name, motto, GitHub, LinkedIn, email, resume link. Leave a field empty to hide it. |
 | `src/content/projects.ts` | Every project, in both languages: tagline, problem, solution, role, highlights, decisions, facts, images. Order in the file is order on the page; `featured: true` gives a project a large card on the home page. |
-| `src/content/ui.ts` | Interface text: hero, section titles, "How I build", about, contact. |
+| `src/content/ui.ts` | Interface text: hero, showcase, section titles, about, contact, footer. |
 
 Project images live in `public/projects/<slug>/`. Prefer WebP around 1,440 px wide; phone screenshots use `frame: "phone"`, desktop screenshots `frame: "browser"`.
 

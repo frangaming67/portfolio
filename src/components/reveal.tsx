@@ -4,9 +4,10 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 /**
- * Fades in every `[data-reveal]` element as it scrolls into view.
- * The hidden starting state only applies under `html.js` (set by an inline
- * script in the layout), so content stays visible when JavaScript is off.
+ * Brings each `[data-reveal]` element in once (and opens any `.shutter` inside it),
+ * as it scrolls into view. The hidden starting state only applies under
+ * `html.js` (set by an inline script in the layout) and only without reduced
+ * motion, so content stays visible when JavaScript is off.
  * Re-runs on every route change because the layout persists across pages.
  */
 export function Reveal() {
@@ -20,16 +21,16 @@ export function Reveal() {
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+            entry.target.classList.add("is-in");
             observer.unobserve(entry.target);
           }
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.08 },
     );
 
     document
-      .querySelectorAll("[data-reveal]:not(.is-visible)")
+      .querySelectorAll("[data-reveal]:not(.is-in)")
       .forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
