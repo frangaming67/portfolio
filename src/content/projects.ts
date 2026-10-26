@@ -327,129 +327,6 @@ export const projects: Project[] = [
     gallery: [],
   },
   {
-    slug: "vega",
-    name: "Vega",
-    kind: { en: "Training app", es: "App de entrenamiento" },
-    year: "2026",
-    status: "in-progress",
-    categories: ["mobile"],
-    featured: false,
-    repo: { url: "https://github.com/frangaming67/vega", private: true },
-    stack: ["Flutter", "Dart", "Riverpod", "Drift (SQLite)", "Supabase", "PostgreSQL + RLS"],
-    accent: "#6d7cff",
-    tagline: {
-      en: "An offline-first training and nutrition app, built so a workout logged without signal is never lost.",
-      es: "Una app de entrenamiento y nutrición que funciona sin conexión, pensada para que nunca se pierda un entrenamiento.",
-    },
-    problem: {
-      en: "People log workouts in gyms with bad signal, and fitness tracking is scattered across apps for routines, food and body metrics. Online-first apps stall or lose data offline. Vega aims to be one calm, premium place that works 100% offline and never loses a logged set.",
-      es: "La gente registra entrenamientos en gimnasios con mala señal, y el seguimiento está repartido en apps distintas para rutinas, comida y medidas. Las apps que dependen de internet se traban o pierden datos. Vega busca ser un único lugar, calmo y premium, que funcione 100% offline y nunca pierda una serie registrada.",
-    },
-    solution: {
-      en: "A Flutter app with Clean Architecture, Riverpod and GoRouter. A local SQLite database (Drift) is the source of truth, with sync-ready IDs from day one. On top of it: a reactive home dashboard, a full offline workout logger, a food diary and a custom design system called Nocturne, plus backend groundwork on Supabase with row-level security.",
-      es: "Una app en Flutter con Clean Architecture, Riverpod y GoRouter. Una base SQLite local (Drift) es la fuente de verdad, con IDs listos para sincronizar desde el primer día. Encima: un inicio reactivo, un registro de entrenamientos completo offline, un diario de comidas y un sistema de diseño propio llamado Nocturne, más la base del backend en Supabase con seguridad por fila.",
-    },
-    role: {
-      en: "Solo project: product vision, brand, architecture and the decision process (25 ADRs, 36 merged pull requests). I reviewed every sprint on an Android emulator.",
-      es: "Proyecto individual: visión de producto, marca, arquitectura y proceso de decisiones (25 ADRs, 36 pull requests). Revisé cada sprint en un emulador Android.",
-    },
-    highlights: {
-      en: [
-        "Local-first data layer: 23 tables with foreign-key actions, soft delete, audit columns and client-generated UUID v7 IDs, at schema v5 with append-only migrations.",
-        "The home dashboard is a read model (CQRS-lite) that recomputes SQL aggregates whenever any of 7 tables changes, with no event bus.",
-        "Full offline workout loop: 45 seeded exercises, routines, live sessions pre-filled from your last set for progressive overload, a rest timer and session recovery.",
-        "Nocturne design system: 17 widgets driven by color, spacing and motion tokens, with 28 golden snapshot tests in dark and light.",
-        "Supabase groundwork: Postgres with deny-by-default row-level security and a script that tests cross-user isolation.",
-      ],
-      es: [
-        "Datos local-first: 23 tablas con acciones de clave foránea, borrado lógico, columnas de auditoría e IDs UUID v7 generados en el cliente, en la versión 5 del esquema con migraciones sólo aditivas.",
-        "El inicio es un modelo de lectura (CQRS-lite) que recalcula agregados SQL cada vez que cambia alguna de 7 tablas, sin bus de eventos.",
-        "Entrenamiento completo offline: 45 ejercicios precargados, rutinas, sesiones en vivo que precargan tu última serie para la sobrecarga progresiva, temporizador de descanso y recuperación de sesión.",
-        "Sistema de diseño Nocturne: 17 widgets basados en tokens de color, espaciado y movimiento, con 28 tests de captura en modo oscuro y claro.",
-        "Base en Supabase: Postgres con seguridad por fila que niega todo por defecto y un script que prueba el aislamiento entre usuarios.",
-      ],
-    },
-    decisions: {
-      en: [
-        "ADR-0007 · Offline by design: SQLite is the source of truth and sync is infrastructure. Online-first with a cache was rejected because it breaks without signal.",
-        "ADR-0023 · Guest-first identity: linking an account later never re-keys local data, because client and server share the same UUID v7.",
-        "ADR-0020 · Replaced the original Laravel backend plan with Supabase to cut backend work for a solo developer.",
-        "ADR-0019 · Motion as physics through tokens, with blur reserved for stacked surfaces to avoid jank on mid-range phones.",
-      ],
-      es: [
-        "ADR-0007 · Offline por diseño: SQLite es la fuente de verdad y la sincronización es infraestructura. Se descartó online con caché porque falla sin señal.",
-        "ADR-0023 · Identidad de invitado primero: vincular una cuenta después nunca cambia las claves locales, porque cliente y servidor comparten el mismo UUID v7.",
-        "ADR-0020 · Se reemplazó el plan original de backend en Laravel por Supabase para reducir trabajo de backend siendo una sola persona.",
-        "ADR-0019 · El movimiento como física a través de tokens, y el desenfoque sólo en superficies apiladas para no trabar celulares de gama media.",
-      ],
-    },
-    facts: {
-      en: [
-        "91 Dart files · 9.1k lines (excluding generated code)",
-        "91 test cases, 14 of them golden tests (28 snapshots, dark and light)",
-        "25 ADRs · 36 merged pull requests",
-        "7 screens plus 2 picker sheets",
-      ],
-      es: [
-        "91 archivos Dart · 9,1 mil líneas (sin código generado)",
-        "91 casos de test, 14 de ellos golden (28 capturas, oscuro y claro)",
-        "25 ADRs · 36 pull requests",
-        "7 pantallas y 2 selectores",
-      ],
-    },
-    next: {
-      en: "Accounts, sync and onboarding are designed but not built yet. Next: get CI green, wire the Progress screen to real data and publish an Android build.",
-      es: "Las cuentas, la sincronización y el onboarding están diseñados pero todavía no construidos. Lo próximo: dejar CI en verde, conectar Progreso a datos reales y publicar una versión para Android.",
-    },
-    cover: {
-      src: "/projects/vega/home.webp",
-      width: 720,
-      height: 1600,
-      frame: "phone",
-      alt: {
-        en: "Vega home screen in the Nocturne design: \"Your day\" card with three progress rings and a gradient call to action.",
-        es: "Inicio de Vega con el diseño Nocturne: tarjeta \"Tu día\" con tres anillos de progreso y un botón con degradé.",
-      },
-    },
-    gallery: [
-      {
-        src: "/projects/vega/home-data.webp",
-        width: 720,
-        height: 1600,
-        frame: "phone",
-        alt: { en: "Home with a logged meal: the nutrition ring at 100%.", es: "Inicio con una comida registrada: el anillo de nutrición al 100%." },
-      },
-      {
-        src: "/projects/vega/nutrition.webp",
-        width: 720,
-        height: 1600,
-        frame: "phone",
-        alt: { en: "Food diary with per-meal sections and a calorie ring.", es: "Diario de comidas por momento del día con anillo de calorías." },
-      },
-      {
-        src: "/projects/vega/numberpad.webp",
-        width: 720,
-        height: 1600,
-        frame: "phone",
-        alt: { en: "Custom number pad for entering grams.", es: "Teclado numérico propio para cargar gramos." },
-      },
-      {
-        src: "/projects/vega/food-picker.webp",
-        width: 720,
-        height: 1600,
-        frame: "phone",
-        alt: { en: "Food search with macros per 100 g.", es: "Buscador de alimentos con macros cada 100 g." },
-      },
-      {
-        src: "/projects/vega/progress.webp",
-        width: 720,
-        height: 1600,
-        frame: "phone",
-        alt: { en: "Progress screen design (sample data).", es: "Diseño de la pantalla de progreso (datos de ejemplo)." },
-      },
-    ],
-  },
-  {
     slug: "mathvoice",
     name: "MathVoice",
     kind: { en: "Accessible math", es: "Matemática accesible" },
@@ -552,97 +429,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "cortina",
-    name: "Cortina Lab",
-    kind: { en: "Blind automation", es: "Automatización de cortina" },
-    year: "2026",
-    status: "early-stage",
-    categories: ["hardware", "web"],
-    featured: false,
-    repo: { url: "https://github.com/frangaming67/cortina", private: false },
-    stack: ["Python", "JavaScript", "Three.js", "Vite", "GitHub Actions", "ESP32 (planned)"],
-    accent: "#7cb342",
-    tagline: {
-      en: "Safety-first roller-blind automation: tested control logic and a 3D simulator, before buying a single motor.",
-      es: "Una cortina automática que prioriza la seguridad: lógica de control con tests y un simulador 3D, antes de comprar un solo motor.",
-    },
-    problem: {
-      en: "I wanted my ball-chain roller blind to open by itself every morning at 08:00. The timer is the easy part. A motor pulling a chain must never fight a jam, never fire twice after a reboot or a clock jump, and must fail safe. Buying the wrong motor was a real risk too.",
-      es: "Quería que mi cortina roller de cadena se abriera sola todas las mañanas a las 08:00. El temporizador es lo fácil. Un motor que tira de una cadena nunca debe forzar un atasco, nunca debe dispararse dos veces tras un reinicio o un salto de reloj, y debe fallar de forma segura. Comprar el motor equivocado también era un riesgo real.",
-    },
-    solution: {
-      en: "The behavior is specified and tested in software before any hardware is bought: a 4-state controller with injected motor and storage, 14 unit tests in CI, first-principles torque sizing, and Cortina Lab, an interactive Three.js simulator to compare motors, tune the mechanism and simulate a jam.",
-      es: "El comportamiento se especifica y se prueba en software antes de comprar hardware: un controlador de 4 estados con motor y almacenamiento inyectados, 14 tests unitarios en CI, el torque calculado desde principios básicos y Cortina Lab, un simulador interactivo en Three.js para comparar motores, ajustar el mecanismo y simular un atasco.",
-    },
-    role: {
-      en: "Sole contributor. I set the real-world requirements (open at 08:00, stiff chain, outlet 3 m away) and inventoried my own hardware kit, then built the controller, tests, docs and simulator around them.",
-      es: "Único contribuidor. Definí los requisitos reales (abrir a las 08:00, cadena dura, enchufe a 3 m) e inventarié mi propio kit de hardware, y después construí sobre eso el controlador, los tests, la documentación y el simulador.",
-    },
-    highlights: {
-      en: [
-        "Write-ahead attempt log: the day's attempt is saved before the motor moves, so the blind opens at most once a day, even across reboots.",
-        "Time safety: the run timeout uses a monotonic clock, a clock that jumps backwards never re-triggers, and a missed 08:00 is never \"caught up\".",
-        "Torque sized from first principles: 3.0 kgf·cm required, assuming a 2 kgf chain pull (not yet measured). The simulator shows the stepper from my kit at 0.1x of what's needed, which rules it out before I buy a motor.",
-      ],
-      es: [
-        "Registro previo del intento: el intento del día se guarda antes de mover el motor, así la cortina se abre como máximo una vez por día, incluso tras reinicios.",
-        "Seguridad temporal: el límite de tiempo usa un reloj monotónico, un reloj que retrocede nunca vuelve a disparar y unas 08:00 perdidas nunca se \"recuperan\".",
-        "Torque calculado desde principios básicos: hacen falta 3,0 kgf·cm, suponiendo una tracción de 2 kgf en la cadena (todavía sin medir). El simulador muestra que el motor paso a paso de mi kit llega a 0,1x de lo necesario, y lo descarta antes de comprar un motor.",
-      ],
-    },
-    decisions: {
-      en: [
-        "Specification by executable model: the rules live in a hardware-agnostic controller, so the same tests can check the future ESP32 firmware.",
-        "Fail closed: fault and stop states latch until reset, there are no automatic same-day retries, and an invalid clock never starts a run.",
-      ],
-      es: [
-        "Especificación con un modelo ejecutable: las reglas viven en un controlador independiente del hardware, así los mismos tests sirven para el futuro firmware del ESP32.",
-        "Fallar cerrado: los estados de falla y parada quedan trabados hasta reiniciar, no hay reintentos automáticos en el día y un reloj inválido nunca arranca el motor.",
-      ],
-    },
-    facts: {
-      en: [
-        "14 Python unit tests, green in CI on every push; 3 JS tests run locally",
-        "4 motors compared in the simulator",
-        "Hardware not built yet: design and simulation stage",
-      ],
-      es: [
-        "14 tests unitarios en Python, en verde en CI en cada push; 3 tests en JS que corren en local",
-        "4 motores comparados en el simulador",
-        "Hardware todavía sin construir: etapa de diseño y simulación",
-      ],
-    },
-    cover: {
-      src: "/projects/cortina/overview.webp",
-      width: 800,
-      height: 505,
-      frame: "browser",
-      alt: {
-        en: "Cortina Lab: 3D roller blind with chain and motor, a simulated clock and motor settings.",
-        es: "Cortina Lab: cortina 3D con cadena y motor, reloj simulado y ajustes del motor.",
-      },
-    },
-    gallery: [
-      {
-        src: "/projects/cortina/mechanism.webp",
-        width: 800,
-        height: 600,
-        frame: "browser",
-        alt: { en: "Close-up of the gearmotor, drive wheel and bead chain.", es: "Primer plano del motorreductor, la rueda y la cadena." },
-      },
-      {
-        src: "/projects/cortina/motors.webp",
-        width: 800,
-        height: 600,
-        frame: "browser",
-        alt: {
-          en: "Motor comparison: only the geared motor has enough torque margin.",
-          es: "Comparación de motores: sólo el motorreductor tiene margen de torque suficiente.",
-        },
-      },
-    ],
-  },
-  {
     slug: "mza-beats",
     name: "MzaBeats",
     kind: { en: "Band directory", es: "Directorio de bandas" },
@@ -659,6 +445,7 @@ export const projects: Project[] = [
       },
     },
     repo: { url: "https://github.com/gmvelasco6/mza-beats", private: false },
+    demo: "https://mza-beats.onrender.com/index.php",
     stack: ["PHP 8.2", "MySQL", "JavaScript", "CSS", "Docker"],
     accent: "#f57c00",
     tagline: {
@@ -691,10 +478,42 @@ export const projects: Project[] = [
     },
     decisions: { en: [], es: [] },
     facts: {
-      en: ["78 commits · 4 pull requests", "My share: 19 commits, +1,476 lines"],
-      es: ["78 commits · 4 pull requests", "Mi parte: 19 commits, +1.476 líneas"],
+      en: ["Online on Render, deployed with Docker", "78 commits · 4 pull requests", "My share: 19 commits, +1,476 lines"],
+      es: ["Online en Render, publicado con Docker", "78 commits · 4 pull requests", "Mi parte: 19 commits, +1.476 líneas"],
     },
-    gallery: [],
+    cover: {
+      src: "/projects/mza-beats/home.webp",
+      width: 2000,
+      height: 1250,
+      frame: "browser",
+      alt: {
+        en: "MzaBeats home: \"Welcome to MzaBeats\" above the Indie section, with a photo of a Mendoza band.",
+        es: "Inicio de MzaBeats: \"Bienvenido a MzaBeats\" sobre la sección Indie, con la foto de una banda de Mendoza.",
+      },
+    },
+    gallery: [
+      {
+        src: "/projects/mza-beats/rock.webp",
+        width: 2000,
+        height: 1250,
+        frame: "browser",
+        alt: { en: "The Rock page: band search and the story of Mendoza rock.", es: "La página de Rock: buscador de bandas y la historia del rock mendocino." },
+      },
+      {
+        src: "/projects/mza-beats/pop.webp",
+        width: 2000,
+        height: 1250,
+        frame: "browser",
+        alt: { en: "The Pop page, with its own search.", es: "La página de Pop, con su propio buscador." },
+      },
+      {
+        src: "/projects/mza-beats/phone.webp",
+        width: 780,
+        height: 1688,
+        frame: "phone",
+        alt: { en: "MzaBeats on a phone, with the CSS-only menu.", es: "MzaBeats en el celular, con el menú hecho sólo con CSS." },
+      },
+    ],
   },
   {
     slug: "blackjack-java",
@@ -750,19 +569,16 @@ export const projects: Project[] = [
 export const stats = {
   repos: projects.length,
   liveDemos: projects.filter((p) => p.demo).length,
-  // FrontDesk 32 + MathVoice 186 + Cortina 17
-  tests: 235,
-  // Vega
-  adrs: 25,
+  // FrontDesk 32 + MathVoice 186
+  tests: 218,
 };
 
 /** Languages I've shipped code in, each with the projects that use it. */
 export const languages: { name: string; where: string[] }[] = [
   { name: "TypeScript", where: ["FrontDesk AI", "OTC", "MathVoice"] },
-  { name: "JavaScript", where: ["Fran Lorenzi Films", "Cortina Lab"] },
+  { name: "JavaScript", where: ["Fran Lorenzi Films", "MzaBeats"] },
   { name: "PHP", where: ["MzaBeats"] },
-  { name: "SQL", where: ["MzaBeats", "Vega"] },
-  { name: "Dart", where: ["Vega"] },
+  { name: "SQL", where: ["MzaBeats"] },
   { name: "Java", where: ["Blackjack Java"] },
 ];
 
@@ -772,5 +588,4 @@ export const tools = ["React", "Next.js", "HTML & CSS", "MariaDB / MySQL", "Post
 export const testCounts = [
   { project: "MathVoice", count: 186, note: { en: "unit, browser and offline tests, run in CI", es: "unitarios, de navegador y sin conexión, en CI" } },
   { project: "FrontDesk AI", count: 32, note: { en: "conversation flow, guardrails and API", es: "flujo de conversación, límites y API" } },
-  { project: "Cortina Lab", count: 17, note: { en: "the safety rules of the controller", es: "las reglas de seguridad del controlador" } },
 ] satisfies { project: string; count: number; note: L }[];

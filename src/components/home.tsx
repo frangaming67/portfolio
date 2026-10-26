@@ -182,7 +182,7 @@ function Work({ lang }: { lang: Lang }) {
         })}
       </div>
       {small.length > 0 && (
-        <div className="work__small">
+        <div className={`work__small${small.length === 1 ? " work__small--one" : ""}`}>
           <h3 className="work__smallTitle" data-reveal>{t.work.smaller}</h3>
           <ul>
             {small.map((p, i) => (
