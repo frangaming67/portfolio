@@ -60,7 +60,9 @@ function Hero({ lang, altHref }: { lang: Lang; altHref: string }) {
         <p className="hero__links" style={{ margin: 0 }}>
           <a className="link" href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
           <a className="link" href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a className="link" href={site.resume[lang]} target="_blank" rel="noopener noreferrer">{t.contact.resume}</a>
+          {site.resume[lang] && (
+            <a className="link" href={site.resume[lang]} target="_blank" rel="noopener noreferrer">{t.contact.resume}</a>
+          )}
         </p>
       </div>
       <a className="hero__phone" href="#run" data-run aria-label={t.hero.run}>
@@ -322,10 +324,12 @@ export function Contact({ lang }: { lang: Lang }) {
             <dt>{t.contact.linkedin}</dt>
             <dd><a className="link" href={site.linkedin} target="_blank" rel="noopener noreferrer">Francisco Basigalup</a></dd>
           </div>
-          <div>
-            <dt>{t.contact.resume}</dt>
-            <dd><a className="link" href={site.resume[lang]} target="_blank" rel="noopener noreferrer">{t.contact.resumeLink}</a></dd>
-          </div>
+          {site.resume[lang] && (
+            <div>
+              <dt>{t.contact.resume}</dt>
+              <dd><a className="link" href={site.resume[lang]} target="_blank" rel="noopener noreferrer">{t.contact.resumeLink}</a></dd>
+            </div>
+          )}
         </dl>
       </div>
     </section>

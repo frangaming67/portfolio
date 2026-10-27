@@ -20,8 +20,6 @@ export const site = {
   github: "https://github.com/frangaming67",
   linkedin: "https://www.linkedin.com/in/francisco-basigalup-a57021307/",
   email: "panchobasigalupdominguez@gmail.com",
-  resume: {
-    en: "/resume-francisco-basigalup-en.pdf",
-    es: "/cv-francisco-basigalup-es.pdf",
-  } satisfies L,
+  // Empty while the resume is being redone; set the PDF paths again to show the links.
+  resume: { en: "", es: "" } satisfies L,
 };
